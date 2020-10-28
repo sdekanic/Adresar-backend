@@ -17,7 +17,7 @@ const zahtjevInfo = (req, res, next) => {
   
   app.use(zahtjevInfo)
 
-let poruke = [
+let podaci = [
     {
         id: 1,
         ImePrezime: 'Sanela Dekanić',
@@ -30,13 +30,13 @@ app.get('/', (req, res) => {
     res.send('<h1>Pozdrav od Express servera + nodemona</h1>')
 })
 
-app.get('/api/poruke', (req, res) => {
-    res.json(poruke)
+app.get('/api/podaci', (req, res) => {
+    res.json(podaci)
 })
 
-app.get('/api/poruke/:id', (req, res) => {
+app.get('/api/podaci/:id', (req, res) => {
     const id = Number(req.params.id)
-    const osoba = poruke.find(p => p.id === id)
+    const osoba = podaci.find(p => p.id === id)
 
     if (osoba) {
         res.json(osoba)
@@ -45,24 +45,24 @@ app.get('/api/poruke/:id', (req, res) => {
     }
 
 })
-app.delete('/api/poruke/:id', (req, res) => {
+app.delete('/api/podaci/:id', (req, res) => {
     const id = Number(req.params.id)
-    poruke = poruke.filter(p => p.id !== id)
+    podaci = podaci.filter(p => p.id !== id)
     res.status(204).end()
 
 })
 
-app.put('/api/poruke/:id', (req, res) => {
+app.put('/api/podaci/:id', (req, res) => {
     const id = Number(req.params.id)
     const podatak = req.body
-    poruke = poruke.map(p => p.id !== id ? p : podatak)
+    podaci = podaci.map(p => p.id !== id ? p : podatak)
     res.json(podatak)
 
 })
 
-app.post('/api/poruke', (req, res) => {
-    const maxId = poruke.length > 0
-    ? Math.max(...poruke.map(p => p.id))
+app.post('/api/podaci', (req, res) => {
+    const maxId = podaci.length > 0
+    ? Math.max(...podaci.map(p => p.id))
     : 0
 
     const podatak = req.body
