@@ -83,7 +83,7 @@ app.post('/api/podaci', (req, res) => {
 })
 
 const nepoznataRuta = (req, res) => {
-    res.status(404).send({ error: 'nepostojeca ruta' })
+    res.status(404).send({ error: 'Nepostojeca ruta!' })
   }
   
   app.use(nepoznataRuta)
